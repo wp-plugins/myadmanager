@@ -65,6 +65,12 @@ Simple, Goto MyAdManager Admin Panel -> Options. Disable 7Day payment Option.
 
 You can add the form in your post/page by simply adding `[myadmanager_show_form]` using the visual editor to your post/page. I would suggest you to create a page called Advertising and then add the form in that. You can also add information about your website in that page. Then you can point all your links of 'Buy Ad-Space' to that page.
 
+= Does the plugin add no-follow to the ad links ? =
+
+Yes it does.
+
+You can add the form in your post/page by simply adding `[myadmanager_show_form]` using the visual editor to your post/page. I would suggest you to create a page called Advertising and then add the form in that. You can also add information about your website in that page. Then you can point all your links of 'Buy Ad-Space' to that page.
+
 = What are form.template.html and confirm-order.template.html files ? =
 
 They are template files. As the name suggests form.template.html is the layout how your Buy Ad Form will look. Please take care of the variables, DO NOT edit the variables.
@@ -80,6 +86,7 @@ Thirdly, myadmanager.css defines styles for these pages as well as how ads are d
 
 1. The Main page which shows all the ads available in the database. It also shows information on which is active and which is not. You can also add new ads from this page.
 2. The settings page. here you have to define the cost for your adspace, enable/disable to show the **Buy Ads Form** etc.
+3. Buy Form. It can be modified using the template.
 
 
 == Acknowledgments ==
