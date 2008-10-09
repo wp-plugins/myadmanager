@@ -365,7 +365,7 @@ $d = dateDiff(date("Y-m-d"),$showads->end_date);
 echo "<tr id=$showads->id $style>
 	<td>$showads->id</td>
 	<td>$showads->ad_name</td>
-	<td><a href=\"$showads->hyperlink\"><img src=\"$showads->imagelink\" alt=\"$showads->ad_alt_text\" width=\"125\" height=\"125\"></a></td>
+	<td><a href=\"$showads->hyperlink\"><img src=\"$showads->imagelink\" rel=\"nofollow\" alt=\"$showads->ad_alt_text\" width=\"125\" height=\"125\"></a></td>
 	<td>$showads->start_date</td>
 	<td>$showads->end_date</td>
 	<td>$d</td>
@@ -452,12 +452,12 @@ $limit = $max - count($adsarray);
 <ul class="groupads" style="list-style:none;">
 <?php
 foreach( $adsarray as $ad ) {
-echo "<li><a href=\"$ad->hyperlink\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_name\" width=\"125\" height=\"125\"></a></li>";
+echo "<li><a href=\"$ad->hyperlink\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_name\" width=\"125\" height=\"125\" rel=\"nofollow\"></a></li>";
 }
 
 $adsarray = $ads->getAds(1,"WHERE type=0 AND active=1 ORDER BY id DESC LIMIT $limit");
 foreach( $adsarray as $ad ) {
-echo "<li><a href=\"$ad->hyperlink\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_name\" width=\"125\" height=\"125\"></a></li>";
+echo "<li><a href=\"$ad->hyperlink\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_name\" width=\"125\" height=\"125\" rel=\"nofollow\"></a></li>";
 } ?>
 </ul>
 </div>
