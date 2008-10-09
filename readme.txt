@@ -13,7 +13,7 @@ Manages 125x125 ADs.Automatic activation and deactivation of ads.Ads can bought 
 
 == Description ==
 
-I created this plugin because, I was tired of registering my site with millions of ad marketing/management websites, which were not only complete waste of time and money. I have noticed a lot of such websites which "claim to help us manage our ad-space", but in the end they end up putting their own ads (from which they make money) and also take a share of our money if someone buys ad-space in our website. So I present to you MyAdManager. There are many plugins to manage 125x125 ads, but the most unique feature of this plugin is that it automates ALL the procedures, including buying of Ads through PayPal and displaying them in your website automatically. It uses the PayPal IPN (Instant Payment Notification) feature.
+I created this plugin because, I was tired of registering my site with millions of ad marketing/management websites, which were not only complete waste of time but money as well. I have noticed a lot of such websites which "claim to help us manage our ad-space", but in the end they end up putting their own ads (from which they earn) and also take a share of our earnings. So I present to you MyAdManager. There are many plugins to manage 125x125 ads, but the most unique feature of this plugin is that it automates ALL the procedures, including buying of Ads through PayPal and displaying them in your website automatically. It uses the PayPal IPN (Instant Payment Notification) feature.
 
 MyAdManager docks easily into your Wordpress Administrator Page. You`ll notice a new tab called 'MyAdManager' being created in the front page
 
@@ -73,7 +73,7 @@ Thirdly, myadmanager.css defines styles for these pages as well as how ads are d
 
 
 == Known Issues ==
-* If you have WP Super Cache installed on your blog, ads may not be rotated on every new request. The issue is being addressed and will be sorted in the upcoming versions.
+* If you have WP Super Cache installed on your blog, ads may not be rotated on every new request. This issue is being addressed and will be sorted out in the upcoming updates of the plugin.
 
 
 == Screenshots ==
@@ -82,4 +82,7 @@ Thirdly, myadmanager.css defines styles for these pages as well as how ads are d
 2. The settings page. here you have to define the cost for your adspace, enable/disable to show the **Buy Ads Form** etc.
 
 
+== Acknowledgments ==
 Here's a link to [Visionmasterdesigns.com](http://Visionmasterdesigns.com/ "IT is here...") to see the live demo at work.
+
+Thanks to [Micah Carrick](http://www.micahcarrick.com) since I have used his PHP Paypal IPN Integration Class to help me out with this plugin.
