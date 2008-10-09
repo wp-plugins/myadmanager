@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Confirm Details</title>
+<link rel="stylesheet" href="myAdminMananger.css" type="text/css" media="screen" />
+</head>
+<body>
+<div id="buyform">
+<p><h2>Confirm Details - <?php echo get_option('blogname'); ?></h2></p>
+<p>
+<strong>AD-Name :</strong> <?php echo $ad_name; ?></p>
+<p><strong>URL of AD-Image :</strong>  <?php echo $imagelink; ?></p>
+<p><strong>Image Alt Text :</strong>  <?php echo $ad_alt_text; ?></p>
+<p><strong>Target URL :</strong> <?php echo $hyperlink; ?></p>
+<p><strong>Package :</strong>  <?php echo $itemname." - $".$amt; ?></p>
+<p><strong>Cost :</strong>  <strong><?php echo "$$amt"; ?></strong></p>
+<p><h2>PREVIEW</h2></p>
+<p>
+<a href="<?php echo $hyperlink; ?>"><img src="<?php echo $imagelink; ?>" alt="<?php echo $ad_alt_text; ?>" width="125" height="125" border="0" /></a></p>
+</div>
+</body>
+</html>
