@@ -1,6 +1,6 @@
 <?php
 
-define ('MY_AD_MANAGER_VERSION','0.8 beta');
+define ('MY_AD_MANAGER_VERSION','0.8.1');
 
 /*****************************
 Class myAds
