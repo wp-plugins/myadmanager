@@ -1,0 +1,5 @@
+0.8beta
+FIRST RELEASE
+
+0.8.2
+Fixed *Directory Name Problem* working fine.
