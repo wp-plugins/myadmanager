@@ -1,0 +1,43 @@
+<script type="text/javascript">
+function validateMyForm(form) {
+			var obj = document.buyform;
+			            
+			if(obj.ad_name.value == "" ) {
+			alert('Please enter the AD-Name');
+			return false;
+			}     
+ 
+            return true;
+}            
+</script>
+<h2>BUY NOW</h2>
+<form name="buyform" method="post" action="<?php echo WP_MYADMANAGER_URL.'/form.php?action=process'; ?>" id="buyform">
+<input type="hidden" name="paypal" value="Y">
+<div>
+<label>AD-Name :</label>
+<input type="text" name="ad_name" value="" size="20" id="ad_name">
+</div>
+<div>
+<label>URL of AD-Image :</label>
+<input name="imagelink" type="text" value="http://" size="20" maxlength="90">
+</div>
+<div>
+<label>Image Alt Text :</label>
+<input name="ad_alt_text" type="text" value="" size="20" maxlength="50">
+</div>
+<div>
+<label>Target URL :</label>
+<input name="hyperlink" type="text" value="http://" size="20" maxlength="90">
+</div>
+<div>
+<label>Item Name : </label><select name="duration">
+<?php if(get_option('myadmanager_week_enable') == "checked") { ?>
+<option value="7"><?php echo get_option('myadmanager_name_week')." - $".get_option('myadmanager_cost_week'); ?></option>
+<?php } ?>
+<option value="30"><?php echo get_option('myadmanager_name_month')." - $".get_option('myadmanager_cost_month'); ?></option></select>
+</div>
+
+<p class="submit" align="right">
+<input type="submit" name="Submit" value="Buy Now via PayPal" onClick="return validateMyForm(this);" />
+</p>
+</form>
