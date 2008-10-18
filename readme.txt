@@ -1,12 +1,12 @@
 === MyADManager ===
-Contributors: Michael Benedict Arul aka rowoot
-Plugin URI: http://www.visionmasterdesigns.com/wordpress-plugins/myadmananger/
-Author URI: http://www.visionmasterdesigns.com
-Donate link: http://www.visionmasterdesigns.com
+Contributors: [Michael aka rowoot](http://www.visionmasterdesigns.com/ "IT is here...")
+Plugin URI: http://www.visionmasterdesigns.com/wordpress-plugins/myadmanager/
+Author URI: http://www.visionmasterdesigns.com/
+Donate link: http://www.visionmasterdesigns.com/
 Tags: ads, 125x125, ad management, advertisement, paypal, automatic
 Requires at least: 2.5
 Tested up to: 2.6.2
-Stable tag: 0.8.2
+Stable tag: 0.9
 
 Manages 125x125 ADs.Automatic activation and deactivation of ads.Ads can bought directly,accepts payments via Paypal.No middle men required.
 

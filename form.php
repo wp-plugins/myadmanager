@@ -1,16 +1,14 @@
 <?php
 require_once(dirname(__FILE__).'/paypal.class.php'); 
-require_once(dirname(__FILE__).'/myAdManager-class.php' );
+require_once(dirname(__FILE__).'/myadmanager-class.php' );
 require_once("../../../wp-blog-header.php");
 
 $p = new paypal_class; 
 //$p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';   // testing paypal url
 $p->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';     // paypal url
             
-// setup a variable for this script (ie: 'http://www.micahcarrick.com/paypal.php')
 $this_script = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 
-// if there is not action variable, set the default action of 'process'
 if (empty($_GET['action'])) $_GET['action'] = 'error'; 
 
 $user_email = get_option("myadmanager_paypal_add");
@@ -47,10 +45,14 @@ switch ($_GET['action']) {
 		ob_start();
 	    include(dirname(__FILE__).'/confirm-order.template.html');
 	    $l = ob_get_contents();
+		
+		$l = replace("$l", array('blog_name' => get_option('blogname') ,'ad_name' => $ad_name,'ad_image_url' => $imagelink,'ad_url' => $hyperlink,'ad_image_alt' => $ad_alt_text, 'package' => $itemname." - $".$amt,'total_amount' => "$$amt", 'preview_ad_image' => '<a href="'.$hyperlink.'"><img src="'.$imagelink.'" alt="'.$ad_alt_text.'" width="125" height="125" border="0" /></a>'));		
+		
+		$l .= show_footer();
+		
     	ob_end_clean();
 	
 		echo $l;
-		show_footer();
 		
 		$p->add_field('business',$user_email );
 		$p->add_field('return', $this_script.'?action=success');

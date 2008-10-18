@@ -4,14 +4,13 @@
 CSS Document 
 * Please keep the name of the style to display ads as it is.
 
-@package WP-MyAdManger
+@package MyAdManger
 ******************************/
 
 
 /* STYLES TO DISPLAY ADS START - Please donot edit the name*/
 
 ul.groupads { float:left; list-style:none; margin:0px; padding:0px; }
-
 .groupads li { float: left; width:125px; height:125px; margin:3px 3px 2px 0px; }
 
 /* STYLES TO DISPLAY ADS ENDS*/

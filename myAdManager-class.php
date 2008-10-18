@@ -1,6 +1,6 @@
 <?php
 
-define ('MY_AD_MANAGER_VERSION','0.8.2');
+define ('MY_AD_MANAGER_VERSION','0.9');
 
 /*****************************
 Class myAds
@@ -14,7 +14,12 @@ General Functions
 * addRecord($tablename,$params,$id)
 
 Extra
-show_form()
+* show_form()
+* dateShift($startDate,$num_days)
+* dateDiff($startDate, $endDate)
+* show_footer()
+* show_donate()
+* replace($template, $hash, $prefix = '{', $postfix = '}') @ v0.9
 
 @package MyAdManger
 ******************************/
@@ -36,7 +41,7 @@ var $myTransac_table;
 		global $wpdb;
 		$sql="SELECT id,ad_name,ad_alt_text,imagelink,hyperlink,start_date,end_date,active,type FROM ".$this->myAds_table." $params ;";
 	
-		$adresults = $wpdb->get_results( $sql );
+		$adresults = $wpdb->get_results( $sql );				
 		
 		$asql="SELECT id,end_date FROM ".$this->myAds_table." WHERE NOW()>end_date AND type=1";
 		$exresults = $wpdb->get_results( $asql );
@@ -86,25 +91,44 @@ var $myTransac_table;
 	
 	}
 	
-/*****************************
-show_form()
-Shows form to buy ad
+	/*****************************
+	show_form()
+	Shows form to buy ad
+	
+	@package MyAdManger
+	******************************/
+	function show_form() {
+		if(get_option('myadmanager_paypal_enable') == "checked" && ((count($this->getAds(1,"WHERE NOW()<end_date AND type=1 AND active=1")))<$this->getRegionOption("ad_total")))	 {
+		ob_start();
+		include(dirname(__FILE__).'/form.template.html');
+		$process_url = WP_MYADMANAGER_URL.'/form.php?action=process';
+		
+		$l .= ob_get_contents();
+		
+		if(get_option('myadmanager_week_enable') == "checked")
+			$o = '<option value="7">'.get_option('myadmanager_name_week').' - $'.get_option('myadmanager_cost_week').'</option>';
+		$o .= '<option value="30">'.get_option('myadmanager_name_month').' - $'.get_option('myadmanager_cost_month').'</option>';		
+				
+		ob_end_clean();
+		
+		$l = replace("$l", array('product_options' => "<select name='duration'>$o</select>" , 'process_url' => "$process_url", 'ad_name' => '<input type="text" name="ad_name" value="" id="ad_name">', 'ad_image_url' => '<input name="imagelink" type="text" value="http://" maxlength="90">', 'ad_image_alt' => '<input name="ad_alt_text" type="text" value="" maxlength="60">', 'ad_url' => '<input name="hyperlink" type="text" value="http://" size="20" maxlength="90">'));
+		
+		
+		}
+		else {
+			//if admin disables board or if all ad-slots are full
+			$l = '<div align="center" style="background-color:#dbdbdb; padding:7px; margin:10px; font-size:14px; color:000;">';
+			if(get_option('myadmanager_paypal_enable') != "checked")
+				$l .= 'Buy Form currently Disabled by Administrator';
+			else
+				$l .= 'Buy Form currently disabled because all the AdSlots are full.';
+			$l .= '</div>';
+		}
+		
+		return $l.show_footer();
+		}
 
-@package MyAdManger
-******************************/
-function show_form() {
-	if(get_option('myadmanager_paypal_enable') == "checked" && ((count($this->getAds(1,"WHERE NOW()<end_date AND type=1 AND active=1")))<$this->getRegionOption("ad_total")))	 {
-	ob_start();
-    include(dirname(__FILE__).'/form.template.html');
-    $l = ob_get_contents();
-    ob_end_clean();
-	}
-	else
-	$l = "Form Disabled";
-	return $l.'<p align="right" style="font-family:Verdana;font-size:12px;"><strong>Powered by <a href="http://www.visionmasterdesigns.com">myAdManager '.MY_AD_MANAGER_VERSION.'</a></strong></p>';
-	}
-
-}
+} //end class
 
 
 /*****************************
@@ -128,20 +152,37 @@ function dateShift($startDate,$num_days)
 function dateDiff($startDate, $endDate)
 {
     // Parse dates for conversion
-    $startArry = date_parse($startDate);
-    $endArry = date_parse($endDate);
+    $startArry = explode('-',$startDate);
+    $endArry = explode('-',$endDate);
 
     // Convert dates to Julian Days
-    $start_date = gregoriantojd($startArry["month"], $startArry["day"], $startArry["year"]);
-    $end_date = gregoriantojd($endArry["month"], $endArry["day"], $endArry["year"]);
+    $start_date = gregoriantojd($startArry[1], $startArry[2], $startArry[0]);
+    $end_date = gregoriantojd($endArry[1], $endArry[2], $endArry[0]);
 
     // Return difference
     $ans = round(($end_date - $start_date), 0);
 	if($ans<0)
-	$ans='Expired';
+		$ans='Expired';
 
 	return $ans;
 } 
+
+/*****************************
+replace($template, $hash, $prefix = '{', $postfix = '}')
+returns replaced text
+
+@package MyAdManger
+@version 0.9
+******************************/
+function replace($template, $hash, $prefix = '{', $postfix = '}')
+{
+    $tmp = array();
+    foreach($hash as $k => $v)
+    {
+        $tmp[$prefix . $k . $postfix] = $v;
+    }
+    return str_replace(array_keys($tmp), array_values($tmp), $template);
+}
 
 
 /*****************************
@@ -151,9 +192,15 @@ Shows footer
 @package MyAdManger
 ******************************/
 function show_footer() {
-echo '<p align="right" style="font-family:Verdana;font-size:12px;"><strong>Powered by <a href="http://www.visionmasterdesigns.com">myAdManager '.MY_AD_MANAGER_VERSION.'</a></strong></p>';
+return '<p align="right" style="font-family:Verdana;font-size:12px;"><strong>Powered by <a href="http://www.visionmasterdesigns.com/wordpress-plugins/myadmanager/">MyADManager '.MY_AD_MANAGER_VERSION.'</a></strong></p>';
 }
 
+/*****************************
+show_donate()
+Shows donate form
+
+@package MyAdManger
+******************************/
 function show_donate() {
 echo '<div style=" width:65%;border:1px dashed #eb9320;background-color:#fafcc7;text-align:center;margin:0 auto 10px auto;padding:5px;">
 If you find this plugin really useful and would like to contribute to the further development of this plugin, please do donate. <strong>Every individual donation counts....</strong> !<br />

@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: MyAdManager
-Plugin URI: http://www.visionmasterdesigns.com/wordpress-plugins/myadmananger/
+Plugin URI: http://www.visionmasterdesigns.com/wordpress-plugins/myadmanager/
 Description: Manages 125x125 ads automatically. Also allows the ability to add new ads and make them live on the confirmation of payment from paypal.
-Author: Michael Benedict Arul
-Version: 0.8.2
+Author: Michael Benedict Arul a.k.a rowoot
+Version: 0.9
 Author URI: http://www.visionmasterdesigns.com
 */
 
@@ -25,7 +25,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once(dirname(__FILE__).'/myAdManager-class.php' );
+require_once(dirname(__FILE__).'/myadmanager-class.php' );
 define('WP_MYADMANAGER_URL', get_option('siteurl') . '/wp-content/plugins/myadmanager');
 define('WP_ABS_MYADMANAGER_URL', ABSPATH. '/wp-content/plugins/myadmanager');
 
@@ -88,7 +88,7 @@ echo "</table>";
 </p>
 </form>
 <?php show_donate(); ?>
-<?php show_footer(); ?>
+<?php echo show_footer(); ?>
 <?php
 }
 
@@ -255,7 +255,7 @@ Enter the message you wish your customer to recieve when he has bought the ad.
 </p>
 </form>
 <?php show_donate(); ?>
-<?php show_footer(); ?>
+<?php echo show_footer(); ?>
 </div>
 
 <?php
@@ -365,7 +365,7 @@ $d = dateDiff(date("Y-m-d"),$showads->end_date);
 echo "<tr id=$showads->id $style>
 	<td>$showads->id</td>
 	<td>$showads->ad_name</td>
-	<td><a href=\"$showads->hyperlink\"><img src=\"$showads->imagelink\" rel=\"nofollow\" alt=\"$showads->ad_alt_text\" width=\"125\" height=\"125\"></a></td>
+	<td><a href=\"$showads->hyperlink\" rel=\"nofollow\"><img src=\"$showads->imagelink\" alt=\"$showads->ad_alt_text\" width=\"125\" height=\"125\"></a></td>
 	<td>$showads->start_date</td>
 	<td>$showads->end_date</td>
 	<td>$d</td>
@@ -424,7 +424,7 @@ Outside : External Ads.</td>
 
 </form>
 <?php show_donate(); ?>
-<?php show_footer(); ?>
+<?php echo show_footer(); ?>
 </div>
 <?php
 }
@@ -452,12 +452,16 @@ $limit = $max - count($adsarray);
 <ul class="groupads" style="list-style:none;">
 <?php
 foreach( $adsarray as $ad ) {
-echo "<li><a href=\"$ad->hyperlink\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_name\" width=\"125\" height=\"125\" rel=\"nofollow\"></a></li>";
+
+if($ad->ad_alt_text = "")
+$ad->ad_alt_text = $ad->ad_name;
+
+echo "<li><a href=\"$ad->hyperlink\" rel=\"nofollow\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_alt_text\" width=\"125\" height=\"125\"></a></li>";
 }
 
 $adsarray = $ads->getAds(1,"WHERE type=0 AND active=1 ORDER BY id DESC LIMIT $limit");
 foreach( $adsarray as $ad ) {
-echo "<li><a href=\"$ad->hyperlink\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_name\" width=\"125\" height=\"125\" rel=\"nofollow\"></a></li>";
+echo "<li><a href=\"$ad->hyperlink\" rel=\"nofollow\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_alt_text\" width=\"125\" height=\"125\"></a></li>";
 } ?>
 </ul>
 </div>
@@ -474,7 +478,7 @@ Adds the CSS file to the head section of the blog
 ******************************/
 function myadmanager_add_css_styles() {
 echo'<!-- MyAdManager Header Starts !-->';
-echo '<link rel="stylesheet" href="'.WP_MYADMANAGER_URL.'/myAdminMananger.css" type="text/css" media="screen" />';
+echo '<link rel="stylesheet" href="'.WP_MYADMANAGER_URL.'/myadmanager.css" type="text/css" media="screen" />';
 echo'<!-- MyAdManager Header Ends !-->';
 }
 
@@ -488,7 +492,7 @@ function _install() {
 require_once(dirname(__FILE__).'/install.php');
 }
 register_activation_hook(__FILE__,'_install');
-
+	
 
 /*****************************
 myadmanager_show_form()

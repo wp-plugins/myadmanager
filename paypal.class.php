@@ -1,4 +1,5 @@
 <?php
+
 /*******************************************************************************
  *                      PHP Paypal IPN Integration Class
  *******************************************************************************
@@ -151,7 +152,7 @@ class paypal_class {
       foreach ($this->fields as $name => $value) {
          echo "<input type=\"hidden\" name=\"$name\" value=\"$value\"/>\n";
       }
-      echo "<p align=\"center\"><INPUT type=\"button\" value=\"Go Back\" onClick=\"history.go(-1)\"> <input class=\"submit\" type=\"submit\" value=\"Click Here to Confirm and Pay\"></p></center>\n";
+      echo "<p align=\"center\"><INPUT type=\"button\" value=\"Go Back\" onClick=\"history.go(-1)\"> <input class=\"submit\" type=\"submit\" value=\"Click Here to Confirm and Pay using Paypal\"></p></center>\n";
       
       echo "</form>\n";
     
