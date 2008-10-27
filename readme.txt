@@ -1,12 +1,12 @@
 === MyADManager ===
-Contributors: Michael aka rowoot
+Contributors: Michael
 Plugin URI: http://www.visionmasterdesigns.com/wordpress-plugins/myadmanager/
 Author URI: http://www.visionmasterdesigns.com/
 Donate link: http://www.visionmasterdesigns.com/
 Tags: ads, 125x125, ad management, advertisement, paypal, automatic
 Requires at least: 2.5
-Tested up to: 2.6.2
-Stable tag: 0.9
+Tested up to: 2.6.3
+Stable tag: 0.9.1
 
 Manages 125x125 ADs.Automatic activation and deactivation of ads.Ads can bought directly,accepts payments via Paypal.No middle men required.
 
@@ -51,8 +51,9 @@ Features:
 This section describes how to install the plugin and get it working.
 
 1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Place `<?php myadmanager_show(); ?>` in your sidebar or wherever you want to display the ADS.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
+3a. Either Place `<?php if ( function_exists('myadmanager_show') ) myadmanager_show(); ?>` in your sidebar or wherever you want to display the ADS.
+3b. Else activate the MyADManager Widget.
 4. [Optional] If you want to display the 'Buy Ad' form, you can do so by adding `[myadmanager_show_form]` to your desired page or post.
 
 == Frequently Asked Questions ==

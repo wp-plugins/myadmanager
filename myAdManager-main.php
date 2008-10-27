@@ -3,8 +3,8 @@
 Plugin Name: MyAdManager
 Plugin URI: http://www.visionmasterdesigns.com/wordpress-plugins/myadmanager/
 Description: Manages 125x125 ads automatically. Also allows the ability to add new ads and make them live on the confirmation of payment from paypal.
-Author: Michael Benedict Arul a.k.a rowoot
-Version: 0.9
+Author: Michael
+Version: 0.9.1
 Author URI: http://www.visionmasterdesigns.com
 */
 
@@ -30,7 +30,66 @@ define('WP_MYADMANAGER_URL', get_option('siteurl') . '/wp-content/plugins/myadma
 define('WP_ABS_MYADMANAGER_URL', ABSPATH. '/wp-content/plugins/myadmanager');
 
 add_action('admin_menu', 'mt_add_pages');
+add_action( 'init', 'startWidget' );
 
+/*****************************
+startWidget() @ v0.9.1
+Adds a simple widget.
+
+@package MyAdManger
+******************************/
+function startWidget()
+{
+	if ( function_exists( 'register_sidebar_widget' ) )
+	{
+		function widget_myadmanager( $args )
+		{
+			$before_widget = '';
+			$before_title = '';
+			$after_title = '';
+			$after_widget = '';
+
+			if ( is_array( $args ) )
+			{
+				if ( array_key_exists( 'before_widget', $args ) )
+				{
+					$before_widget = $args['before_widget'];
+				}
+				if ( array_key_exists( 'before_title', $args ) )
+				{
+					$before_title = $args['before_title'];
+				}
+				if ( array_key_exists( 'after_title', $args ) )
+				{
+					$after_title = $args['after_title'];
+				}
+				if ( array_key_exists( 'after_widget', $args ) )
+				{
+					$after_widget = $args['after_widget'];
+				}
+				$title = get_option("myadmanager_widget_title");
+				echo $before_widget;
+				echo $before_title. "$title" . $after_title;
+				if ( function_exists('myadmanager_show' ) )
+					myadmanager_show();			
+				echo $after_widget;
+			}
+		}
+		
+		register_sidebar_widget( 'MyADManager', 'widget_myadmanager' );
+	}
+	
+	function widget_myadmanager_control( $args )
+	{
+		if ( $_POST['myadmanager-widget-submit'] ) {
+			update_option("myadmanager_widget_title",stripslashes($_POST['myadmanager-widget-title']));
+		}
+		echo '<p style="text-align:left;"><label for="get_recent_comments-title">Title:</label> <input style="width: 200px;" id="myadmanager-widget-title" name="myadmanager-widget-title" type="text" value="'.get_option("myadmanager_widget_title").'" />
+		<br />Please Enter the title of this Widget.</p>';
+		echo '<input type="hidden" id="myadmanager-widget-submit" name="myadmanager-widget-submit" value="1" />';
+	}
+	register_widget_control( 'MyADManager', 'widget_myadmanager_control', 210, 100 );
+}
 
 /*****************************
 mt_add_pages()

@@ -64,6 +64,7 @@ update_option("myadmanager_name_week",'125x125 AD Space - 1 week');
 update_option("myadmanager_name_month",'125x125 AD Space - 1 month');
 update_option("myadmanager_week_enable","checked");
 update_option("myadmanager_paypal_email_msg","Thanks for buying adspace here.");
+update_option("myadmanager_widget_title","Advertisement");
 }
 
 update_option("myAdManager_version",MY_AD_MANAGER_VERSION);

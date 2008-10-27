@@ -1,3 +1,6 @@
+0.9.1
+*Added Widget Support with unique title ability.
+
 0.9
 *no follow tags fixed and properly added to hyperlinks
 *Template system to design Buy Now form and Confirmation Form has been redesigned. its much better and abstract and secure
