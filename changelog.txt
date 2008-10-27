@@ -1,0 +1,19 @@
+0.9.1
+*Added Widget Support with unique title ability.
+
+0.9
+*no follow tags fixed and properly added to hyperlinks
+*Template system to design Buy Now form and Confirmation Form has been redesigned. its much better and abstract and secure
+*performance issues were addressed. no.of queries were reduced
+*date parsing issues which were not compatible with php4 has been resolved. The plugin can now be used with php4
+
+0.8.2
+*nofollow tags added
+
+0.8.1
+*Fixed *Directory Name Problem* working fine.
+
+0.8beta
+*FIRST RELEASE
+
+
