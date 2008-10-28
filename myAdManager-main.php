@@ -4,7 +4,7 @@ Plugin Name: MyAdManager
 Plugin URI: http://www.visionmasterdesigns.com/wordpress-plugins/myadmanager/
 Description: Manages 125x125 ads automatically. Also allows the ability to add new ads and make them live on the confirmation of payment from paypal.
 Author: Michael
-Version: 0.9.2
+Version: 0.9.2a
 Author URI: http://www.visionmasterdesigns.com
 */
 
