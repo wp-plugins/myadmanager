@@ -7,11 +7,15 @@ CSS Document
 @package MyAdManger
 ******************************/
 
-
 /* STYLES TO DISPLAY ADS START - Please donot edit the name*/
 
-ul.groupads { float:left; list-style:none; margin:0px; padding:0px; }
-.groupads li { float: left; width:125px; height:125px; margin:3px 3px 2px 0px; }
+/* All the ads come under this div style */
+.myadmanager_groupads { 
+	padding:0px; 
+	margin:0px;
+}
+
+/* If you want to define margin for each ad, goto the MyADManger Admin Panel to define margins */
 
 /* STYLES TO DISPLAY ADS ENDS*/
 

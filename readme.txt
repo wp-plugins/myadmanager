@@ -6,7 +6,7 @@ Donate link: http://www.visionmasterdesigns.com/
 Tags: ads, 125x125, ad management, advertisement, paypal, automatic
 Requires at least: 2.5
 Tested up to: 2.6.3
-Stable tag: 0.9.1
+Stable tag: 0.9.2
 
 Manages 125x125 ADs.Automatic activation and deactivation of ads.Ads can bought directly,accepts payments via Paypal.No middle men required.
 
@@ -78,6 +78,9 @@ They are template files. As the name suggests form.template.html is the layout h
 Secondly, confirm-order.template.html is the page that is displayed after the Buy Ad form is filled, just to give the customer all details to verify his requirements and other variables.
 Thirdly, myadmanager.css defines styles for these pages as well as how ads are displayed
 
+= How do you define margin for each AD ? =
+
+Now you can directly define margin space for each AD via MyADManager Admin Panel->Options.
 
 == Known Issues ==
 * If you have WP Super Cache installed on your blog, ads may not be rotated on every new request. This issue is being addressed and will be sorted out in the upcoming updates of the plugin.

@@ -4,7 +4,7 @@ Plugin Name: MyAdManager
 Plugin URI: http://www.visionmasterdesigns.com/wordpress-plugins/myadmanager/
 Description: Manages 125x125 ads automatically. Also allows the ability to add new ads and make them live on the confirmation of payment from paypal.
 Author: Michael
-Version: 0.9.1
+Version: 0.9.2
 Author URI: http://www.visionmasterdesigns.com
 */
 
@@ -166,6 +166,8 @@ function mt_options_page() {
     // Read in existing option value from database
 	$ads_v = $ads->getRegionOption("ad_v");
 	$ads_h = $ads->getRegionOption("ad_h");
+	$e_margin = $ads->getRegionOption("margin");	
+	$e_margin_array = explode(',',$e_margin);
 	$paypal_add = get_option("myadmanager_paypal_add");
 	$paypal_return_page = get_option("myadmanager_paypal_return_page");
 	$cost_week = get_option("myadmanager_cost_week");
@@ -185,16 +187,17 @@ function mt_options_page() {
 		$week_option = $_POST['week_option'];
 		$ads_h = $_POST["ads_h"];
         $ads_v = $_POST["ads_v"];
-		
+		$e_margin = $_POST["e_margin"];
+			$e_margin_array = explode(',',$e_margin);
 		$ad_total=$ads_v*$ads_h;
-		$width=($ads_h*125)+(5*$ads_h);
-		$height=($ads_v*125)+(5*$ads_v);
+		$width=($ads_h*125)+(($e_margin_array[1]+$e_margin_array[3])*($ads_h));
+		$height=($ads_v*125)+(($e_margin_array[0]+$e_margin_array[2])*($ads_v));
 		
 		$cost_month = $_POST['cost_month'];
 		$name_month = $_POST['name_month'];
 		
        // Save the posted value in the database
-	   $ads->updateRecord("$ads->myRegion_table","ad_h=$ads_h,ad_v=$ads_v,ad_total=$ad_total,height=$height,width=$width",1);
+	   $ads->updateRecord("$ads->myRegion_table","ad_h=$ads_h,ad_v=$ads_v,ad_total=$ad_total,height=$height,width=$width,margin='$e_margin'",1);
 	   	
 		if ($paypal_enable != "checked" || get_option("myadmanager_paypal_enable") == "checked") {
 			if ($paypal_enable == "checked") {
@@ -240,6 +243,11 @@ How many ads to display horizontally</td>
 <?php _e("No of Vertical Ads :", 'mt_trans_domain' ); ?> </th><td>
 <input type="text" name="ads_v" value="<?php echo $ads_v; ?>" size="5"><br />
 How many ads to display vertically</td>
+</tr>
+<tr><th scope="row">
+<?php _e("Margin around Each AD :", 'mt_trans_domain' ); ?> </th><td>
+<input type="e_margin" name="e_margin" value="<?php echo $e_margin; ?>" size="5"><br />
+Margin around Each AD. Eg: <?php echo $e_margin; ?> = <strong><?php echo $e_margin_array[0]; ?>px top, <?php echo $e_margin_array[1]; ?>px right, <?php echo $e_margin_array[2]; ?>px bottom, <?php echo $e_margin_array[3]; ?>px left</strong>.</td>
 </tr>
 <tr><th scope="row">
 <?php _e("Item Name for 1month :", 'mt_trans_domain' ); ?> </th><td>
@@ -503,26 +511,22 @@ $max = $ads->getRegionOption("ad_total");
 $adsarray = $ads->getAds(1,"WHERE NOW()<end_date AND type=1 AND active=1 ORDER BY RAND() LIMIT $max");
 
 $limit = $max - count($adsarray);
-
 ?>
-
 <!-- MyAdManager Plugin Starts !-->
-<div style="width:<?php echo $width; ?>px; margin:0 auto;">
-<ul class="groupads" style="list-style:none;">
+<div class="groupads" style="width:<?php echo $width; ?>px;">
 <?php
 foreach( $adsarray as $ad ) {
-
 if($ad->ad_alt_text = "")
-$ad->ad_alt_text = $ad->ad_name;
+	$ad->ad_alt_text = $ad->ad_name;
 
-echo "<li><a href=\"$ad->hyperlink\" rel=\"nofollow\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_alt_text\" width=\"125\" height=\"125\"></a></li>";
+echo "<div class='myadmanager_ads'><a href=\"$ad->hyperlink\" title=\"$ad->ad_alt_text\" rel=\"nofollow\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_alt_text\" width=\"125\" height=\"125\"></a></div>";
 }
 
 $adsarray = $ads->getAds(1,"WHERE type=0 AND active=1 ORDER BY id DESC LIMIT $limit");
 foreach( $adsarray as $ad ) {
-echo "<li><a href=\"$ad->hyperlink\" rel=\"nofollow\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_alt_text\" width=\"125\" height=\"125\"></a></li>";
+echo "<div class='myadmanager_ads'><a href=\"$ad->hyperlink\" title=\"$ad->ad_alt_text\" rel=\"nofollow\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_alt_text\" width=\"125\" height=\"125\"></a></div>";
 } ?>
-</ul>
+<div style=" clear:both;">
 </div>
 <!-- MyAdManager Plugin Ends !-->
 
@@ -536,8 +540,16 @@ Adds the CSS file to the head section of the blog
 @package MyAdManger
 ******************************/
 function myadmanager_add_css_styles() {
+$ads = new myAds();
+
+$margin = $ads->getRegionOption("margin");
+$margin_array = explode(',',$margin);
+
 echo'<!-- MyAdManager Header Starts !-->';
 echo '<link rel="stylesheet" href="'.WP_MYADMANAGER_URL.'/myadmanager.css" type="text/css" media="screen" />';
+echo "<style type=\"text/css\">
+.myadmanager_ads {float: left; height:125px; width:125px; margin:$margin_array[0]px $margin_array[1]px $margin_array[2]px $margin_array[3]px;}
+</style>";
 echo'<!-- MyAdManager Header Ends !-->';
 }
 
