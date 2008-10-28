@@ -5,7 +5,7 @@ $table_name_ads = $wpdb->prefix."myAdManager_ads";
 $table_name_regions = $wpdb->prefix."myAdManager_regions";
 $table_name_transactions = $wpdb->prefix."myAdManager_transactions";
 
-$cur_version = 0.41;
+$cur_version = 0.42;
 
 $installed_ver = get_option("myAdManager_db_version");
 
