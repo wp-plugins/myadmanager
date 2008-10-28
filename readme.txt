@@ -52,9 +52,9 @@ This section describes how to install the plugin and get it working.
 
 1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-3a. Either Place `<?php if ( function_exists('myadmanager_show') ) myadmanager_show(); ?>` in your sidebar or wherever you want to display the ADS.
-3b. Else activate the MyADManager Widget.
-4. [Optional] If you want to display the 'Buy Ad' form, you can do so by adding `[myadmanager_show_form]` to your desired page or post.
+3. Either Place `<?php if ( function_exists('myadmanager_show') ) myadmanager_show(); ?>` in your sidebar or wherever you want to display the ADS.
+4. Else activate the MyADManager Widget.
+5. [Optional] If you want to display the 'Buy Ad' form, you can do so by adding `[myadmanager_show_form]` to your desired page or post.
 
 == Frequently Asked Questions ==
 
@@ -92,6 +92,9 @@ Now you can directly define margin space for each AD via MyADManager Admin Panel
 2. The settings page. here you have to define the cost for your adspace, enable/disable to show the **Buy Ads Form** etc.
 3. Buy Form. It can be modified using the template.
 
+== Upgrading to 0.9.x ==
+
+Try to use the automatic Wordpess updater, if that doesn't work. Please Deactivate the plugin, upload the latest version and reactivate it.
 
 == Acknowledgments ==
 Here's a link to [Visionmasterdesigns.com](http://Visionmasterdesigns.com/ "IT is here...") to see the live demo at work.

@@ -526,7 +526,7 @@ $adsarray = $ads->getAds(1,"WHERE type=0 AND active=1 ORDER BY id DESC LIMIT $li
 foreach( $adsarray as $ad ) {
 echo "<div class='myadmanager_ads'><a href=\"$ad->hyperlink\" title=\"$ad->ad_alt_text\" rel=\"nofollow\"><img src=\"$ad->imagelink\" alt=\"$ad->ad_alt_text\" width=\"125\" height=\"125\"></a></div>";
 } ?>
-<div style=" clear:both;">
+<div style="clear:both;"></div>
 </div>
 <!-- MyAdManager Plugin Ends !-->
 
