@@ -6,7 +6,7 @@ Donate link: http://www.visionmasterdesigns.com/
 Tags: ads, 125x125, ad management, advertisement, paypal, automatic
 Requires at least: 2.5
 Tested up to: 2.6.3
-Stable tag: 0.9.2
+Stable tag: 0.9.2a
 
 Manages 125x125 ADs.Automatic activation and deactivation of ads.Ads can bought directly,accepts payments via Paypal.No middle men required.
 
