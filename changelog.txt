@@ -1,5 +1,7 @@
-0.9.2a
-*Fixes a Minor CSS bug which made the ads display haywire.
+0.9.3
+*Renamed v0.9.2a
+*Fixes a Minor CSS bug
+*Fixed conflicts with other plugins. Changed all the names of the functions to be unique
 
 0.9.2
 *Added ability to add margins to each AD directly via MyADManger Admin Panel. Now no need to edit myadmanager.css
