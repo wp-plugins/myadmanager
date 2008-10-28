@@ -29,7 +29,7 @@ require_once(dirname(__FILE__).'/myadmanager-class.php' );
 define('WP_MYADMANAGER_URL', get_option('siteurl') . '/wp-content/plugins/myadmanager');
 define('WP_ABS_MYADMANAGER_URL', ABSPATH. '/wp-content/plugins/myadmanager');
 
-add_action('admin_menu', 'mt_add_pages');
+add_action('admin_menu', 'myadmanager_add_pages');
 add_action( 'init', 'startWidget' );
 
 /*****************************
@@ -92,19 +92,19 @@ function startWidget()
 }
 
 /*****************************
-mt_add_pages()
+myadmanager_add_pages()
 Add Pages, to wordpress admin
 
 @package MyAdManger
 ******************************/
-function mt_add_pages() {
-  add_menu_page('MyAdManager', 'MyAdManager', 8, __FILE__, 'mt_manage_page');
-  add_submenu_page(__FILE__, 'MyAdManager Options', 'MyAdManager Options', 8, 'options', 'mt_options_page');
-  add_submenu_page(__FILE__, 'Transaction Log', 'Transaction Log', 8, 'transacs', 'mt_transac_page');
+function myadmanager_add_pages() {
+  add_menu_page('MyAdManager', 'MyAdManager', 8, __FILE__, 'myadmanager_manage_page');
+  add_submenu_page(__FILE__, 'MyAdManager Options', 'MyAdManager Options', 8, 'options', 'myadmanager_options_page');
+  add_submenu_page(__FILE__, 'Transaction Log', 'Transaction Log', 8, 'transacs', 'myadmanager_transac_page');
 }
 
 
-function mt_transac_page() {
+function myadmanager_transac_page() {
 global $wpdb;
 $ads = new myAds();
 if($_POST['hidden_form_transactions']=='Y') {
@@ -152,12 +152,12 @@ echo "</table>";
 }
 
 /*****************************
-mt_options_page()
+myadmanager_options_page()
 Basic Options are defined here
 
 @package MyAdManger
 ******************************/
-function mt_options_page() {
+function myadmanager_options_page() {
 	global $wpdb;
 	$ads = new myAds();
     // variables for the field and option names 
@@ -329,14 +329,14 @@ Enter the message you wish your customer to recieve when he has bought the ad.
  }
 
 /*****************************
-mt_manage_page()
+myadmanager_manage_page()
 Ads are managed from this function.
 +Managing ads i.e Delete, Activate and De-Activate
 +Adding New Ads
 
 @package MyAdManger
 ******************************/
-function mt_manage_page() {
+function myadmanager_manage_page() {
 
 //define globals
 $ads = new myAds();
