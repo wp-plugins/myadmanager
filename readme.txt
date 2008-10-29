@@ -34,7 +34,7 @@ Features:
 
 * 2 Types of ADs - Outside, Home
 
-* Home Ads - These type of ads don`t expire. They are displayed when there are not enough OUTSIDE ads to be displayed in the AD-Slots. These ads can only be created via the Admin Panel.
+* Home Ads - These type of ads don`t expire. They are displayed when there are not enough OUTSIDE ads to be displayed in the AD-Slots. These ads can only be created via the Admin Panel. NOTE: These ADs don`t rotate. If you want ads to rotate, make them as OUTSIDE Ads.
 
 * Outisde Ads - Everytime someone buys adspace on your website, an OUTSIDE Ad is created by default. These types of ads have valid expiry dates, After the expiry date, it`ll get deactivated automatically. Outside Ads can also be created via the Admin Panel.
 
@@ -58,6 +58,14 @@ This section describes how to install the plugin and get it working.
 
 == Frequently Asked Questions ==
 
+= Why don`t the ADS I added rotate ? =
+
+Only Outside ADs rotate. Home Ads are displayed after the OUTSIDE ads. If you want the Ads you added to rotate, Make them as Outside Ads. (Outside Ads also expire after specific time limit)
+
+= How do you define margin for each AD ? =
+
+Now you can directly define margin space for each AD via MyADManager Admin Panel->Options.
+
 = I don`t want to give out my ad-space for seven days ! But the Buy Ad form shows 7days and 30days ? What to do =
 
 Simple, Goto MyAdManager Admin Panel -> Options. Disable 7Day payment Option.
@@ -78,9 +86,6 @@ They are template files. As the name suggests form.template.html is the layout h
 Secondly, confirm-order.template.html is the page that is displayed after the Buy Ad form is filled, just to give the customer all details to verify his requirements and other variables.
 Thirdly, myadmanager.css defines styles for these pages as well as how ads are displayed
 
-= How do you define margin for each AD ? =
-
-Now you can directly define margin space for each AD via MyADManager Admin Panel->Options.
 
 == Known Issues ==
 * If you have WP Super Cache installed on your blog, ads may not be rotated on every new request. This issue is being addressed and will be sorted out in the upcoming updates of the plugin.
