@@ -79,7 +79,7 @@ function myadmanager_startWidget()
 		register_sidebar_widget( 'MyADManager', 'widget_myadmanager' );
 	}
 	
-	function widget_myadmanager_control( $args )
+	function widget_myadmanager_control( )
 	{
 		if ( $_POST['myadmanager-widget-submit'] ) {
 			update_option("myadmanager_widget_title",stripslashes($_POST['myadmanager-widget-title']));
