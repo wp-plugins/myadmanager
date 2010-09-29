@@ -1,5 +1,5 @@
 === MyADManager ===
-Contributors: Michael
+Contributors: rowoot
 Plugin URI: http://www.visionmasterdesigns.com/wordpress-plugins/myadmanager/
 Author URI: http://www.visionmasterdesigns.com/
 Donate link: http://www.visionmasterdesigns.com/
